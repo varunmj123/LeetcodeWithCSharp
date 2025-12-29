@@ -1,17 +1,17 @@
 public class Solution {
     public int[] TwoSum(int[] nums, int target) {
+        int[] output = new int[2];
         var seenNumber = new Dictionary<int , int>();
         for(int i = 0; i < nums.Length; i++){
             int compliment = target - nums[i];
             if(seenNumber.ContainsKey(compliment)){
-                int[] output = {seenNumber[compliment], i};
+                output[0] = i;
+                output[1] = seenNumber[compliment];
                 return output;
             }
-            else{
-                seenNumber[nums[i]] = i;
-            }
+            
+            seenNumber[nums[i]] = i;
         }
-        return null;
-
+        return output;
     }
 }
