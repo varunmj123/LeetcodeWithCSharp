@@ -1,32 +1,37 @@
 public class Solution {
     public bool IsValid(string s) {
-        var stackName = new Stack<char>();
-        var bracketPairs = new Dictionary<char, char>{
-            {'(',')'},
-            {'{','}'},
-            {'[',']'}
+        var bracketPairs = new Dictionary<char , char>{
+           { '}','{'},
+            {']','['},
+            {')','('},
         };
-        for(int i = 0; i < s.Length; i++){
-            if(bracketPairs.ContainsKey(s[i]))
-            {
-                // This is an opening bracket so add to stack
-                stackName.Push(s[i]);
-            }
-            else{
-                // This is a closing bracket so we need to pop
-                //Before popping we need to check if the stack is empty
-                if(stackName.Count < 1){
-                    return false;
-                }
-                char poppedChar = stackName.Pop();
-                if(bracketPairs[poppedChar] != s[i]){
-                    return false;
-                }
-            }
-        }
-        if(stackName.Count > 0){
+        if(s.Length == 1){
             return false;
         }
-        return true;
+        var bracketStack = new Stack<char>();
+        for(int i = 0 ; i < s.Length; i++){ 
+            // If it is an operner add to stack
+            if(!bracketPairs.ContainsKey(s[i])){
+                bracketStack.Push(s[i]);
+            }
+            else{
+                if(bracketStack.Count > 0){
+                    char poppedBracket = bracketStack.Pop();
+                    if(poppedBracket != bracketPairs[s[i]]){
+                        return false;
+                    }
+                }
+                else{
+                    return false;
+                }
+                
+            }
+        }
+        if(bracketStack.Count > 0){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 }
