@@ -12,46 +12,46 @@
  * }
  */
 
-// BFS
-public class Solution {
-    public int MaxDepth(TreeNode root) {
-    if (root == null) return 0;
+// // BFS
+// public class Solution {
+//     public int MaxDepth(TreeNode root) {
+//     if (root == null) return 0;
 
-    Queue<TreeNode> queue = new();
-    queue.Enqueue(root);
-    int depth = 0;
+//     Queue<TreeNode> queue = new();
+//     queue.Enqueue(root);
+//     int depth = 0;
 
-    while (queue.Count > 0) {
-        int levelSize = queue.Count; // nodes at this level
-        depth++;
+//     while (queue.Count > 0) {
+//         int levelSize = queue.Count; // nodes at this level
+//         depth++;
         
-        // Now we add everything in this level to the queue
-        for (int i = 0; i < levelSize; i++) {
-            TreeNode node = queue.Dequeue();
+//         // Now we add everything in this level to the queue
+//         for (int i = 0; i < levelSize; i++) {
+//             TreeNode node = queue.Dequeue();
 
-            if (node.left != null)
-                queue.Enqueue(node.left);
-            if (node.right != null)
-                queue.Enqueue(node.right);
-        }
-    }
+//             if (node.left != null)
+//                 queue.Enqueue(node.left);
+//             if (node.right != null)
+//                 queue.Enqueue(node.right);
+//         }
+//     }
 
-    return depth;
-}
+//     return depth;
+// }
 
-}
+// }
 
 
 //Recursive DFS
-// public class Solution {
-//     public int MaxDepth(TreeNode root) {
-//         if (root == null) {
-//             return 0;
-//         }
+public class Solution {
+    public int MaxDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
 
-//         return 1 + Math.Max(MaxDepth(root.left), MaxDepth(root.right));
-//     }
-// }
+        return 1 + Math.Max(MaxDepth(root.left), MaxDepth(root.right));
+    }
+}
 
 // Iterative DFS Solution
 // public class Solution {
