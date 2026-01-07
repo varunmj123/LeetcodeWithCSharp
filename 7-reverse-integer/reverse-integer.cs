@@ -20,9 +20,8 @@ public class Solution {
                 output += xString[i];
         }
         }
-        bool success = int.TryParse(output, out int result);
-        if(success){
-            return int.Parse(output);
+        if(int.TryParse(output, out int result)){
+            return result;
         }
         else{
             return 0;
