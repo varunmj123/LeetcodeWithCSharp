@@ -1,16 +1,16 @@
 public class Solution {
     public int[] TwoSum(int[] nums, int target) {
+        // Value : Index pairs 
+        var freqDict = new Dictionary<int , int>();
         int[] output = new int[2];
-        var seenNumber = new Dictionary<int , int>();
-        for(int i = 0; i < nums.Length; i++){
+        for(int i =0; i < nums.Length; i++){
             int compliment = target - nums[i];
-            if(seenNumber.ContainsKey(compliment)){
+            if(freqDict.ContainsKey(compliment)){
                 output[0] = i;
-                output[1] = seenNumber[compliment];
+                output[1] = freqDict[compliment];
                 return output;
             }
-            
-            seenNumber[nums[i]] = i;
+            freqDict[nums[i]] = i;
         }
         return output;
     }
